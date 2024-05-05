@@ -1,24 +1,26 @@
 <template>
     <div>
         <comment-form></comment-form>
-
-        <comment
-            v-for="comment in allComments"
-            v-bind:key="comment.id"
-            v-bind:comment="comment"
-        ></comment>
+        <paginator v-bind:elements="allComments" v-bind:per-page='perPage'></paginator>
     </div>
 </template>
 
 <script >
-
 import CommentForm from "./CommentForm.vue";
 import {mapActions, mapGetters} from "vuex";
-import Comment from "./Comment.vue";
+import Paginator from "./common/Paginator.vue";
+
 export default {
-    components: {Comment, CommentForm},
+    components: {Paginator, CommentForm},
     computed: mapGetters(['allComments']),
-    methods: mapActions(['fetchComments']),
+    data() {
+        return {
+            perPage: 3,
+        }
+    },
+    methods:{
+        ...mapActions(['fetchComments']),
+    },
     async mounted(){
          await this.fetchComments();
     },
