@@ -49,6 +49,9 @@ export default {
         refreshComment(state, comment){
             const objIndex = state.comments.findIndex(obj => obj.id === comment.id);
             state.comments[objIndex] = comment;
+        },
+        sortComments(state){
+
         }
     },
     state:{
