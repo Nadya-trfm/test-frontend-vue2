@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import store from "./store";
 //Main pages
-import App from './views/app.vue';
+import App from './views/App.vue';
 
 
 const app = new Vue({
