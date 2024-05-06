@@ -1,5 +1,5 @@
 <template>
-    <div class="btn-toolbar" role="toolbar">
+    <div class="btn-toolbar my-5" role="toolbar">
         <div class="btn-group me-2" role="group" >
             <input type="radio" class="btn-check" name="btntype" id="btnid" value="id" v-model="sort.checkedType">
             <label class="btn btn-outline-primary" for="btnid">Сортировка по id</label>

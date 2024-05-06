@@ -1,10 +1,25 @@
 <template>
-   <form @submit.prevent="submit">
-       <input type="text" v-model="comment.name">
-       <input type="text" v-model="comment.text">
-       <date-picker v-model="comment.date" valueType="format"></date-picker>
-       <button type="submit">submit</button>
-   </form>
+    <div class="card my-3" style="width: 18rem;">
+        <div class="card-body">
+            <form @submit.prevent="submit">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Имя</label>
+                    <input type="text" class="form-control" id="name" v-model="comment.name">
+                </div>
+                <div class="mb-3">
+                    <label for="text" class="form-label">Текст комментария</label>
+                    <textarea class="form-control" id="text" rows="3" v-model="comment.text"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Дата комментария</label>
+                    <date-picker v-model="comment.date" valueType="format" id="date"></date-picker>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Ок</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </template>
 
 <script >

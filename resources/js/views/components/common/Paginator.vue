@@ -1,18 +1,20 @@
 <template>
-    <div>
-        <div v-for="comment  in arr[page-1]" :key="comment.id">
-            <comment
-                v-bind:comment="comment"
-            ></comment>
-        </div>
+    <div class="column my-auto">
 
-        <div class="btn-toolbar">
-            <div class="btn-group">
-                <button class="btn btn-primary" v-for="p in pages" @click.prevent="setPage(p)">
-                    {{p}}
-                </button>
+            <div  v-for="comment  in arr[page-1]" :key="comment.id">
+                <comment
+                    v-bind:comment="comment"
+                ></comment>
             </div>
-        </div>
+        <nav class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li v-for="p in pages" class="page-item">
+                    <button class="page-link" @click.prevent="setPage(p)">
+                        {{p}}
+                    </button>
+                </li>
+            </ul>
+        </nav>
     </div>
 </template>
 

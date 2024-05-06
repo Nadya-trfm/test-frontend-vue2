@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card w-50 my-3">
         <div class="card-body">
             <h5 class="card-title">{{comment.name}}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{comment.date}}</h6>
@@ -18,7 +18,8 @@
         <div v-if="openForm" class="card-footer">
          <comment-form
             v-on:updateOpenForm="updateOpenForm"
-             v-bind:comment="comment"
+            @update:comment ="$emit('update:comment',$event)"
+             :comment="comment"
          ></comment-form>
         </div>
 

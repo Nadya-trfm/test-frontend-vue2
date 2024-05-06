@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <button-group></button-group>
+    <div class="container">
+        <div class="nav justify-content-end">
+            <button-group></button-group>
+        </div>
         <paginator v-bind:elements="allComments" v-bind:per-page='perPage'></paginator>
         <comment-form></comment-form>
     </div>
