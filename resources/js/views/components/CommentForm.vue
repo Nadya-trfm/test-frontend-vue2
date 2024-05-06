@@ -42,6 +42,9 @@ export default {
             },
         },
     },
+    date:{
+
+    },
     emits : 'updateOpenForm',
     methods:{
         ...mapActions(['createComment', 'updateComment']),

@@ -4,37 +4,33 @@
             <h5 class="card-title">{{comment.name}}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{comment.date}}</h6>
             <p class="card-text" >{{comment.text}}</p>
-            <button v-on:click.prevent="updateOpenForm"
+            <button @click.prevent="openCloseForm"
                     type="button"
                     class="btn btn-primary">
                 Изменить
             </button>
-            <button v-on:click.prevent="deleteItem"
+            <button @click.prevent="deleteItem"
                     type="button"
                     class="btn btn-danger">
                 Удалить
             </button>
         </div>
-        <div v-if="openForm" class="card-footer">
-         <comment-form
-            v-on:updateOpenForm="updateOpenForm"
-            @update:comment ="$emit('update:comment',$event)"
-             :comment="comment"
-         ></comment-form>
+        <div v-if="isFormOpen" class="card-footer">
+            <comment-form
+                @openCloseForm="openCloseForm"
+                :comment="comment"
+            ></comment-form>
         </div>
-
     </div>
 </template>
 <script>
-
-
 import {mapActions} from "vuex";
 import CommentForm from "./CommentForm.vue";
 import {ref} from "vue";
 
 export default {
-    components: {Comment, CommentForm},
-
+    name: 'CommentItem',
+    components: {CommentForm},
     props: {
         comment: {
             type: Object,
@@ -48,16 +44,15 @@ export default {
         },
 
     },
-    setup(){
-        const openForm = ref(false);
-        function updateOpenForm() {
-           openForm.value = !openForm.value;
+    setup() {
+        const isFormOpen = ref(false);
+        function openCloseForm() {
+            isFormOpen.value = !isFormOpen.value;
         }
         return{
-            openForm,
-            updateOpenForm,
+            isFormOpen,
+            openCloseForm,
         }
     }
-
 };
 </script>
