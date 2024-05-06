@@ -1,13 +1,22 @@
 <template>
     <div class="container">
-        <div class="nav justify-content-end">
+        <nav class="nav justify-content-end">
             <button-group></button-group>
-        </div>
+        </nav>
         <paginator-with-elements
             :elements='allComments'
             :per-page='perPage'>
         </paginator-with-elements>
-        <comment-form></comment-form>
+        <button v-if="isFormClose"
+                @click.prevent="openCloseForm"
+                type="button"
+                class="btn btn-success">
+            Создать
+        </button>
+        <comment-form
+            v-else
+            @openCloseForm="openCloseForm"
+        ></comment-form>
     </div>
 </template>
 
@@ -16,6 +25,7 @@ import CommentForm from "./CommentForm.vue";
 import {mapActions, mapGetters} from "vuex";
 import PaginatorWithElements from "./common/PaginatorWithElements.vue";
 import ButtonGroup from "./common/ButtonGroup.vue";
+import {ref} from "vue";
 export default {
     components: {PaginatorWithElements, CommentForm, ButtonGroup},
     computed: mapGetters(['allComments']),
@@ -30,7 +40,16 @@ export default {
     async mounted(){
          await this.fetchComments();
     },
-
+    setup() {
+        const isFormClose = ref(true);
+        function openCloseForm() {
+            isFormClose.value = !isFormClose.value;
+        }
+        return{
+            isFormClose,
+            openCloseForm,
+        }
+    }
 };
 </script>
 
