@@ -1,11 +1,10 @@
 <template>
     <div class="column my-auto">
-
-            <div  v-for="comment  in arr[page-1]" :key="comment.id">
-                <comment
-                    v-bind:comment="comment"
-                ></comment>
-            </div>
+        <comment
+            v-for="comment in elementsInPage"
+            :key="comment.id"
+            :comment="comment"
+        ></comment>
         <nav class="d-flex justify-content-center">
             <ul class="pagination">
                 <li v-for="p in pages" class="page-item">
@@ -23,7 +22,7 @@ import Comment from "../Comment.vue";
 import _ from "lodash";
 
 export default {
-    name: "Paginator",
+    name: "PaginatorWithElements",
     components: {Comment},
     props: {
         perPage: {
@@ -36,8 +35,11 @@ export default {
         }
     },
     computed:{
-        arr(){
+        allElementsForPages(){
             return _.chunk(this.elements, this.perPage)
+        },
+        elementsInPage(){
+            return this.allElementsForPages[this.page-1];
         },
         pages(){
             return Math.ceil(this.elements.length / this.perPage)
