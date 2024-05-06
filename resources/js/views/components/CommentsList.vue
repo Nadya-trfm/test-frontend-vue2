@@ -1,8 +1,8 @@
 <template>
     <div>
         <button-group></button-group>
-        <comment-form></comment-form>
         <paginator v-bind:elements="allComments" v-bind:per-page='perPage'></paginator>
+        <comment-form></comment-form>
     </div>
 </template>
 
